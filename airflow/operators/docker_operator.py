@@ -148,12 +148,12 @@ class DockerOperator(BaseOperator):
             for l in self.cli.pull(image, stream=True):
                 output = json.loads(l)
                 # output will consist of either a status key or an error key
-                error = output.get('error', None)
-                status = output.get('status', None)
+                error = output.get('error')
+                status = output.get('status')
                 if error is not None:
                     logging.error("{}").format(error)
                 else:
-                    logging.info("{}".format(status)
+                    logging.info("{}").format(status)
 
         cpu_shares = int(round(self.cpus * 1024))
 
